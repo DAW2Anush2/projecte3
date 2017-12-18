@@ -1,6 +1,6 @@
 
 <?php
-$conexion= mysqli_connect("localhost","root","","bd_reserva");
+$conexion= mysqli_connect("localhost","root","","1718_aramzafraanush");
 
 if ($conexion==false) {
     echo"<p align=center><h3>No s'ha pogut connectar a la base de dades, revisi lusuari,la contrasenya,la ip o el nom de la BD</h3></p><br><br>";
@@ -16,8 +16,14 @@ $consulta=mysqli_query($conexion,$update);
 $hoy = getdate();
 $fecha="$hoy[year]-$hoy[mon]-$hoy[mday] $hoy[hours]:$hoy[minutes]:$hoy[seconds]";
 
+$hora =getdate();
+$hora_actual="$hora_actual[hours]:$hora_actual[minutes]:$hora_actual[seconds]";
 
-$update="UPDATE `recurs` SET rec_alliberacio='$fecha' WHERE `recurs`.`rec_id` = $rec_id;";
+
+$update="UPDATE `reserva` SET res_alliberacio='$fecha' WHERE `recurs`.`rec_id` = $rec_id;";
+$consulta=mysqli_query($conexion,$update);
+
+$update="UPDATE `reserva` SET `res_hora_alliberacio` ='$hora_actual' WHERE `recurs`.`rec_id` = $idrecurs;" ;
 $consulta=mysqli_query($conexion,$update);
 
 $delete="DELETE FROM `reserva` WHERE `reserva`.`rec_id` = $rec_id";

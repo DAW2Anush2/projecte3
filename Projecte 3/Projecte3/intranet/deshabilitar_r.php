@@ -109,12 +109,52 @@
 
               ?>
             </li>
+            <li>
+              <?php
+              $conexion= mysqli_connect("localhost","root","","1718_aramzafraanush");
+              $query="SELECT * FROM usuari WHERE usu_id='$idusu'";
+              $query2=mysqli_query($conexion,$query);
+              if (mysqli_num_rows($query2)>0) {
+                while ($registro=mysqli_fetch_array($query2)) {
+                  for ($i=0;$i<7 ;$i++) {
+                    switch ($i) {
+
+                  case (6):
+                  $usunivell=$registro['usu_nivell'];
+                  if ($usunivell=="administrador") {
+                    echo"<form  method=post action=moderacio.php>";
+                    echo"<br><input type=hidden name=idusu value=$idusu>";
+                    echo"<input  class=nou type=submit value=Administrar>";
+                    echo"</form>";
+                  }
+                  else {
+                    echo "No pots entrar";
+                  }
+                    break;
+                  }
+                }
+              }
+            }
+               ?>
+            </li>
+			  <li>
+              <?php
+              $idusu=$_REQUEST['idusu'];
+              echo"<form  method=post action=paginareserves.php>";
+              echo"<br><input type=hidden name=idusu value=$idusu>";
+              echo"<input  class=nou type=submit value=Fli>";
+              echo"</form>";
+
+              ?>
+            </li>
+
             <li style="float:right"><a class="active" href="logout_proc.php"><i class="material-icons">exit_to_app</i></a></li>
 
             <li style="float:right" class="active1">
               <?php
 
              include 'funcioidusu.php';
+
              ?>
            </li>
         </ul>
@@ -122,29 +162,21 @@
     </div>
     <div class="cabecera">
         <img id="img-cabecera" src="../img/cabecera.jpg">
-        <h1 id="titulo-cabecera">Reserva de recursos</h1>
+        <h1 id="titulo-cabecera">Moderacio</h1>
     </div>
 </header>
 <body>
 <div class="wrapper1">
   <div class="container">
     <div class="well well-sm">
-        <?php
-
-        include "funcions/filtresVALIDACIO.php";
-        ?>
-		<br><br><br>
-        <strong>Display</strong>
-        <div class="btn-group">
-            <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
-            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
-                class="glyphicon glyphicon-th"></span>Grid</a>
-        </div>
+      <?php
+      session_start();
+      echo "Fes click per eliminar la reserva escollida";
+      echo "<a href='deshabilitar.proc.php'>Deshabilitar</a>";
+       ?>
     </div>
-                    <?php
-        include "funcioVALIDACIO.php";
+    </div>
 
-        ?>
     <div id="products" class="row list-group">
 </div>
 </div>

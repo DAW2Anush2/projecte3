@@ -11,7 +11,7 @@
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
 
       <style>
-      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+      /* NOTE: The stylesed inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
       .glyphicon { margin-right:5px; }
 .thumbnail
 {
@@ -109,6 +109,20 @@
 
               ?>
             </li>
+            <li>
+              <?php
+                session_start();
+                  if ($_SESSION['nivell']=="administrador") {
+                    echo"<form  method=post action=moderacio.php>";
+                    echo"<br><input type=hidden name=idusu value=$idusu>";
+                    echo"<input  class=nou type=submit value=Administrar>";
+                    echo"</form>";
+                  }
+                  else {
+                    echo "No pots entrar";
+                  }
+               ?>
+            </li>
 			  <li>
               <?php
               $idusu=$_REQUEST['idusu'];
@@ -119,7 +133,8 @@
 
               ?>
             </li>
-            <li style="float:right"><a class="active" href="../index.html"><i class="material-icons">exit_to_app</i></a></li>
+
+            <li style="float:right"><a class="active" href="logout_proc.php"><i class="material-icons">exit_to_app</i></a></li>
 
             <li style="float:right" class="active1">
               <?php
@@ -130,12 +145,12 @@
         </ul>
 
     </div>
-    <div class="cabecera"> 
-        <img id="img-cabecera" src="../img/cabecera.jpg"> 
+    <div class="cabecera">
+        <img id="img-cabecera" src="../img/cabecera.jpg">
         <h1 id="titulo-cabecera">Reserva de recursos</h1>
     </div>
 </header>
-<body>  
+<body>
 <div class="wrapper1">
   <div class="container">
     <div class="well well-sm">
@@ -147,7 +162,7 @@
 
         include "funcions/filtresVALIDACIO.php";
         ?>
-             
+
         <strong>Display</strong>
         <div class="btn-group">
             <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">

@@ -40,14 +40,14 @@ else {
 $max=0;
 	   }
 
-    $query="SELECT * FROM recurs WHERE rec_estat=0 ORDER BY rec_alliberacio DESC LIMIT 10 OFFSET $max";
+    $query="SELECT * FROM recurs WHERE rec_estat=0";
     $consulta=mysqli_query($conexion,$query);
 	//echo"$query";
 
 if (mysqli_num_rows($consulta)>0) {
 
 //array de camps
-$camp = array("ID", "Nom", "Tipus", "Data d'Inici","Data alliberament","S'ha reservat ","Estat","Imatge","Descripcio");
+$camp = array("ID", "Nom", "Tipus","S'ha reservat ","Estat","Imatge","Descripcio");
 
 echo"<br>";
 //bucle mostrar registres
@@ -57,56 +57,49 @@ echo "<div class='row list-group' id=products>";
 echo "<div class='item  col-xs-4 col-lg-4 grid-group-item'>";
 echo "<div class='thumbnail'>";
   $ok=0;
-for ($i=0;$i<8 ;$i++) {
+for ($i=0;$i<6 ;$i++) {
 
-	switch ($i) {
+  switch ($i) {
     case (0):
       $idrecurs=$registro[rec_id];
-      $i=6;
 
       break;
-		case (1):
-			echo "<div class='group inner list-group-item-heading'>";
-		    echo"<p class='titol'>$registro[$i] </p>";
-		    echo "</div>";
-		break;
-		case (2):
-			echo "<div class='group inner list-group-item-text'>";
-			echo"<font size=3>$camp[$i]: ";
-				echo"<font size=3>$registro[$i] <br>";
-			break;
-		case (3):
-		    echo"<p  class='titoldata'><font size=3>$camp[$i]: </font></p>";
-		    echo"<p class='titoldata'><font size=3>$registro[$i] <br></font></p>";
-		break;
-		case (4):
-		break;
-		case (5):
-		    echo"$camp[$i]";
-		    echo"$registro[$i] vegades <br>";
-		    if ($ok==1) {
-		    echo "</div>";}
-		break;
-		case (6):
-		echo "</div>";
-		break;
-		case (7):
-		if ($ok==0) {
-			echo"<div class='itemlist-group-image'>";
-		    echo"<img src=$registro[$i] width=358 height=220>";
-		    echo "</div>";
-		    echo"<div class='caption'>";
-		      $i=0;
-		      $ok=1;
-		}
+    case (1):
+      echo "<div class='group inner list-group-item-heading'>";
+        echo"<p class='titol'>$registro[$i]</p>";
+        echo "</div>";
+    break;
+    case (2):
+      echo "<div class='group inner list-group-item-text'>";
+      echo"<font size=3>$camp[$i]: ";
+        echo"<font size=3>$registro[$i] <br>";
+      break;
+    case (3):
+        echo"$camp[$i]";
+        echo"$registro[$i] vegades <br>";
+        if ($ok==1) {
+        echo "</div>";}
+    break;
+    case (4):
+    echo "</div>";
+    break;
+    case (5):
+    if ($ok==0) {
+      echo"<div class='itemlist-group-image'>";
+        echo"<img src=$registro[$i] width=358 height=250>";
+        echo "</div>";
+        echo"<div class='caption'>";
+          $i=0;
+          $ok=1;
+    }
 
 
-		break;
-			    default:
-				echo"$camp[$i]: ";
-				echo"$registro[$i] <br>";
-				break;
-	}	//tanca switch
+    break;
+          default:
+        echo"$camp[$i]: ";
+        echo"$registro[$i] <br>";
+        break;
+  }	//tanca switch
 
 }//tanca for
 

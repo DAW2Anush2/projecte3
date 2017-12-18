@@ -99,6 +99,20 @@
               echo"</form>";
 
               ?>
+              <li>
+                <?php
+                  session_start();
+                    if ($_SESSION['nivell']=="administrador") {
+                      echo"<form  method=post action=moderacio.php>";
+                      echo"<br><input type=hidden name=idusu value=$idusu>";
+                      echo"<input  class=nou type=submit value=Administrar>";
+                      echo"</form>";
+                    }
+                    else {
+                      echo "No pots entrar";
+                    }
+                 ?>
+              </li>
             </li>
             <li>
               <?php
@@ -110,7 +124,7 @@
 
               ?>
             </li>
-            <li style="float:right"><a class="active" href="../index.html"><i class="material-icons">exit_to_app</i></a></li>
+            <li style="float:right"><a class="active" href="logout_proc.php"><i class="material-icons">exit_to_app</i></a></li>
 
             <li style="float:right" class="active1">
               <?php
@@ -140,7 +154,7 @@
     </div>
                     <?php
        include "misreservas.php";
-       
+
 
         ?>
 

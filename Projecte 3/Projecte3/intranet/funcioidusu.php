@@ -9,12 +9,16 @@ error_reporting(0);
   $query2=mysqli_query($conexion,$query);
   if (mysqli_num_rows($query2)>0) {
     while ($registro=mysqli_fetch_array($query2)) {
-    for ($i=0;$i<5 ;$i++) {
+    for ($i=0;$i<7 ;$i++) {
 
     switch ($i) {
       case (1):
         $nomusu=$registro[usu_nom];
-        echo "Usuari: $nomusu";
+        echo "Usuari: $nomusu<br>";
+        break;
+      case (6):
+      $usunivell=$registro[usu_nivell];
+      echo "Nivell: $usunivell<br>";
         break;
     }
     }

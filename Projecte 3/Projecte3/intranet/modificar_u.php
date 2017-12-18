@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <title>reserva</title>
   <link rel="stylesheet" type="text/css" href="../css/style.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
@@ -80,6 +79,7 @@
        <ul>
             <li>
               <?php
+              echo "<meta http-equiv='Content-type' content='text/html; charset=utf-8' />";
               $idusu=$_REQUEST['idusu'];
                 echo"<form  method=post action=reservas.php>";
               echo"<br><input type=hidden name=idusu value=$idusu>";
@@ -109,7 +109,7 @@
 
               ?>
             </li>
-            <li style="float:right"><a class="active" href="logout_proc.php"><i class="material-icons">exit_to_app</i></a></li>
+            <li style="float:right"><a class="active" href="../index.php">Desconectar</a></li>
 
             <li style="float:right" class="active1">
               <?php
@@ -129,22 +129,18 @@
 <div class="wrapper1">
   <div class="container">
     <div class="well well-sm">
-        <?php
 
-        include "funcions/filtresVALIDACIO.php";
-        ?>
-		<br><br><br>
-        <strong>Display</strong>
-        <div class="btn-group">
-            <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
-            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
-                class="glyphicon glyphicon-th"></span>Grid</a>
-        </div>
     </div>
                     <?php
-        include "funcioVALIDACIO.php";
-
-        ?>
+                    echo"<form name='form' action='modificar_u.proc.php'method='post'>";
+                		echo"Nom: <input type='text' name='nom_usu' size='25'/><br/><br/>";
+                    echo"Cognom: <input type='text' name='cog_usu' size='25'/><br/><br/>";
+                    echo"E-Mail: <input type='text' name='email_usu' size='25'/><br/><br/>";
+                    echo"Telefón: <input type='text' name='telf_usu' size='2'/><br/><br/>";
+                		echo"Contrasenya: <input type='password' name='pass_usu' size='25'/><br/><br/>";
+                		echo"<input type='submit' value='Crear'/>";
+                		echo "</form>";
+                    ?>
     <div id="products" class="row list-group">
 </div>
 </div>

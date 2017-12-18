@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-  
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
@@ -102,6 +102,20 @@
             </li>
             <li>
               <?php
+                session_start();
+                  if ($_SESSION['nivell']=="administrador") {
+                    echo"<form  method=post action=moderacio.php>";
+                    echo"<br><input type=hidden name=idusu value=$idusu>";
+                    echo"<input  class=nou type=submit value=Administrar>";
+                    echo"</form>";
+                  }
+                  else {
+                    echo "No pots entrar";
+                  }
+               ?>
+            </li>
+            <li>
+              <?php
               $idusu=$_REQUEST['idusu'];
               echo"<form  method=post action=paginareserves.php>";
               echo"<br><input type=hidden name=idusu value=$idusu>";
@@ -110,7 +124,7 @@
 
               ?>
             </li>
-            <li style="float:right"><a class="active" href="../index.html"><i class="material-icons">exit_to_app</i></a></li>
+            <li style="float:right"><a class="active" href="logout_proc.php"><i class="material-icons">exit_to_app</i></a></li>
 
             <li style="float:right" class="active1">
               <?php
@@ -122,12 +136,12 @@
 
 
     </div>
-    <div class="cabecera"> 
-        <img id="img-cabecera" src="../img/cabecera.jpg"> 
+    <div class="cabecera">
+        <img id="img-cabecera" src="../img/cabecera.jpg">
         <h1 id="titulo-cabecera">Recursos reservats</h1>
     </div>
 </header>
-<body>  
+<body>
 <div class="wrapper1">
   <div class="container">
     <div class="well well-sm">

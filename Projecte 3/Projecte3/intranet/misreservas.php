@@ -20,60 +20,58 @@ switch ($idusu) {
 
           if (mysqli_num_rows($queryrecurs)>0) {
 
-		$camp = array("ID", "Nom", "Tipus", "Data d'Inici","Data alliberament","S'ha reservat ","Estat","Imatge","Descripcio");
+		$camp = array("ID", "Nom", "Tipus","S'ha reservat ","Estat","Imatge","Descripcio");
 echo "<div class='row list-group' id=products>";
 
 		  while ($registro=mysqli_fetch_array($queryrecurs)) {
 	echo "<div class='item  col-xs-4 col-lg-4 grid-group-item'>";
 			echo "<div class='thumbnail'>";
 			  $ok=0;
-			for ($a=0;$a<9 ;$a++ ) {
-					switch ($a) {
-				case (0):
-					$recursid="$registro[rec_id]";
-					$a=6;
-				break;
-				case (1):
-					   echo "<div class='group inner list-group-item-heading'>";
-					   echo"$camp[$a]: ";
-					   echo"$registro[$a] <br>";
-					   echo "</div>";
-					   echo "<div class='group inner list-group-item-text1'>";
-				break;
-				case (3):
-					    echo"<font size=1>$camp[$a]: </font>";
-					    echo"<font size=1>$registro[$a] <br></font>";
-				break;
-				case (4):
-				break;
-				case (5):
-					 if ($ok==1) {
-		    echo "</div>";}
-			    break;
-				case (6):
-							echo "</div>";
-				break;
-				case (7):
-					if ($ok==0) {
-								echo"<div class='itemlist-group-image'>";
-								echo"<img src=$registro[$a] width='358px' height='280px'>";
-								echo "</div>";
-								echo"<div class='caption'>";
-								$a=0;
-								$ok=1;
-						    	}
+        for ($i=0;$i<6 ;$i++) {
 
-				break;
-				case (8):
-					echo"$camp[$a]: ";
-					echo"$registro[$a] <br>";
-				break;
-			    default:
-					echo"$camp[$a]: ";
-				    echo"$registro[$a] <br>";
-				break;
-						}
-				}
+          switch ($i) {
+            case (0):
+              $idrecurs=$registro[rec_id];
+
+              break;
+            case (1):
+              echo "<div class='group inner list-group-item-heading'>";
+                echo"<p class='titol'>$registro[$i]</p>";
+                echo "</div>";
+            break;
+            case (2):
+              echo "<div class='group inner list-group-item-text'>";
+              echo"<font size=3>$camp[$i]: ";
+                echo"<font size=3>$registro[$i] <br>";
+              break;
+            case (3):
+                echo"$camp[$i]";
+                echo"$registro[$i] vegades <br>";
+                if ($ok==1) {
+                echo "</div>";}
+            break;
+            case (4):
+            echo "</div>";
+            break;
+            case (5):
+            if ($ok==0) {
+              echo"<div class='itemlist-group-image'>";
+                echo"<img src=$registro[$i] width=358 height=250>";
+                echo "</div>";
+                echo"<div class='caption'>";
+                  $i=0;
+                  $ok=1;
+            }
+
+
+            break;
+                  default:
+                echo"$camp[$i]: ";
+                echo"$registro[$i] <br>";
+                break;
+          }	//tanca switch
+
+        }//tanca for
 				?>
 <div class="row">
                         <div class="">
@@ -138,7 +136,7 @@ $camp = array("ID", "Nom", "Tipus", "Data d'Inici","Data alliberament","S'ha res
 			echo "<div class='thumbnail'>";
 			$ok=0;
 
-				for ($a=0;$a<8 ;$a++ ) {
+				for ($a=0;$a<6 ;$a++ ) {
 					switch ($a) {
 				case (0):
    			   $idrecurs=$registro[rec_id];
@@ -155,22 +153,15 @@ $camp = array("ID", "Nom", "Tipus", "Data d'Inici","Data alliberament","S'ha res
 				echo "<div class='group inner list-group-item-text1'>";
 				break;
 				case (3):
-					    echo"<font size=3>$camp[$a]: </font>";
-					    echo"<font size=3>$recursmostrar[$a] <br></font>";
-				break;
-				case (4):
-
-				break;
-				case (5):
 					echo"$camp[$a]: ";
 				    echo"<font size=3>$recursmostrar[$a] vegades<br>";
 				    if ($ok==1) {
 		    echo "</div>";}
 			    break;
-				case (6):
+				case (4):
 
 				break;
-				case (7):
+				case (5):
 				if ($ok==0) {
 					echo"<div class='itemlist-group-image'>";
 					echo"<img src=$recursmostrar[$a] width=358 height=280>";
@@ -181,7 +172,7 @@ $camp = array("ID", "Nom", "Tipus", "Data d'Inici","Data alliberament","S'ha res
 		            }
 
 				break;
-				case (8):
+				case (6):
 					echo "</div>";
 					break;
 			    default:
